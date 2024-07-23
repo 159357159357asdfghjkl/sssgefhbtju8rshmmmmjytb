@@ -189,7 +189,7 @@ class CreditsState extends MusicBeatState
 		hintText.setFormat(Paths.font("calibri.ttf"), 32, 0xFFFFFFFF, CENTER);
 		hintText.scrollFactor.set();
         add(hintText);
-		
+		addVirtualPad(UP_DOWN, A_B);
 		super.create();
 
         updateSelection();

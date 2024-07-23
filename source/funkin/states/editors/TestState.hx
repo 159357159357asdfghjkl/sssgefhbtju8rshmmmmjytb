@@ -52,7 +52,7 @@ class TestState extends MusicBeatState{
 
 		alphGroup = createAlphabetUI();
 		titlGroup = createTitleUI();
-
+addVirtualPad(NONE,A_B);
 		super.create();
 	}
 
@@ -65,7 +65,7 @@ class TestState extends MusicBeatState{
 		if (updateFunction != null)
 			updateFunction();
 
-		if (FlxG.keys.justPressed.ESCAPE)
+		if (FlxG.keys.justPressed.ESCAPE||virtualPad.buttonB.justPressed)
 		{
 			MusicBeatState.switchState(new MasterEditorMenu());
 			MusicBeatState.playMenuMusic(true);
@@ -121,7 +121,7 @@ class TestState extends MusicBeatState{
 		////
 		inputText.focusGained = function(){
 			StartupState.specialKeysEnabled = false;
-			updateFunction = function(){ if (FlxG.keys.justPressed.ENTER) inputText.focusLost();}
+			updateFunction = function(){ if (FlxG.keys.justPressed.ENTER||virtualPad.buttonA.justPressed) inputText.focusLost();}
 		};
 		inputText.focusLost = function(){
 			StartupState.specialKeysEnabled = true;

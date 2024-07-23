@@ -253,6 +253,7 @@ class LayerWindow extends FlxTypedGroup<FlxBasic>
         FlxG.stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 
         FlxG.stage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
+        addVirtualPad(LEFT_FULL,A_B_C_X_Y_Z);
     }
 
     override public function destroy(){
@@ -1038,37 +1039,37 @@ class StageBuilderState extends MusicBeatState
 		var justPressed = FlxG.keys.justPressed;
 
         //// move camera
-		if (curSelected==null && pressed.ANY)
+		if (curSelected==null && (virtualPad.buttonA.justPressed||pressed.ANY))
         {
             var spr = camFollowPos;
-            var spd = e/(1/60) * (pressed.SHIFT ? 15 : 5);
+            var spd = e/(1/60) * ((virtualPad.buttonB.justPressed||pressed.SHIFT) ? 15 : 5);
 
             //// position
-            if (pressed.W)
+            if (pressed.W||virtualPad.buttonUp.justPressed)
                 spr.y -= spd;
-            if (pressed.S)
+            if (pressed.S||virtualPad.buttonDown.justPressed)
                 spr.y += spd;
-            if (pressed.A)
+            if (pressed.A||virtualPad.buttonLeft.justPressed)
                 spr.x -= spd;
-            if (pressed.D)
+            if (pressed.D||virtualPad.buttonRight.justPressed)
                 spr.x += spd;		
 
             //// zoom
-            if (justPressed.Q){
+            if (justPressed.Q||virtualPad.buttonX.justPressed){
                 realZoom-=0.05;
                 camGame.zoom = realZoom * zoomMult;
             }
-            if (justPressed.E){
+            if (justPressed.E||virtualPad.buttonY.justPressed){
                 realZoom+=0.05;
                 camGame.zoom = realZoom * zoomMult;
             }
-            if (justPressed.R){
+            if (justPressed.R||virtualPad.buttonZ.justPressed){
                 realZoom = 1;
                 camGame.zoom = realZoom * zoomMult;
             }
         }
         
-        if (justPressed.ESCAPE)
+        if (justPressed.ESCAPE||virtualPad.buttonB.justPressed)
             MusicBeatState.switchState(new MasterEditorMenu());
 
         super.update(e);

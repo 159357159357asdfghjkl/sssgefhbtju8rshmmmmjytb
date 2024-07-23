@@ -352,6 +352,8 @@ private class SkipTimeText extends AttachedFlxText{
 		scrollFactor.set();
 		borderSize = 2;
 		updateSkipTimeText();
+		addVirtualPad(LEFT_FULL, A);
+		addVirtualPadCamera();
 	}
 
 	function set_item(obj:Alphabet){

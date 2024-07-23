@@ -134,6 +134,7 @@ class SongSelectState extends MusicBeatState
 		versionTxt.alpha = 0.6;
 		versionTxt.antialiasing = false;
 		add(versionTxt);
+		addVirtualPad(LEFT_FULL, A_B_E);
 
 		super.create();
 	}
@@ -181,7 +182,7 @@ class SongSelectState extends MusicBeatState
 				curSel += (checkNewHold - checkLastHold) * (controls.UI_LEFT_P ? -1 : 1) * verticalLimit;
 		}
 
-		if (FlxG.keys.pressed.CONTROL)
+		if (FlxG.keys.pressed.CONTROL||virtualPad.buttonE.justPressed)
 		{
 			openSubState(new GameplayChangersSubstate());
 		}

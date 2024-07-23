@@ -132,7 +132,7 @@ class ComboPositionSubstate extends MusicBeatSubstate
 		updateRatingPos();
 		updateComboPos();
 		updateTimingPos();
-		
+		addVirtualPad(NONE,B);
 		super.create();
 	}
 

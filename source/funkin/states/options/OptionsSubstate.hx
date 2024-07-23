@@ -462,6 +462,8 @@ class OptionsSubstate extends MusicBeatSubstate
 	public function new(state:Bool=false){
 		optState=state;
 		super();
+		addVirtualPad(LEFT_FULL,A_B_C_X_Y_Z);
+		addVirtualPadCamera();
 	}
 
 	var whitePixel = FlxGraphic.fromRectangle(1, 1, 0xFFFFFFFF, false, 'whitePixel');
@@ -1439,7 +1441,7 @@ class OptionsSubstate extends MusicBeatSubstate
 			var pHov = curWidget;
 			var doUpdate = false;
 
-			if (FlxG.keys.justPressed.TAB){
+			if (FlxG.keys.justPressed.TAB||virtualPad.buttonC.justPressed){
 				FlxG.sound.play(Paths.sound("scrollMenu"));
 				changeCategory(1);
 				
@@ -1447,11 +1449,11 @@ class OptionsSubstate extends MusicBeatSubstate
 				pHov = null;
 			}
 
-			if (FlxG.keys.justPressed.UP){
+			if (FlxG.keys.justPressed.UP||virtualPad.buttonUp.justPressed){
 				FlxG.sound.play(Paths.sound("scrollMenu"));
 				changeWidget(-1);
 			}
-			if (FlxG.keys.justPressed.DOWN){
+			if (FlxG.keys.justPressed.DOWN||virtualPad.buttonDown.justPressed){
 				FlxG.sound.play(Paths.sound("scrollMenu"));
 				changeWidget(1);
 			}
@@ -1461,7 +1463,7 @@ class OptionsSubstate extends MusicBeatSubstate
 
 				switch (curWidget.type){
 					case Toggle:
-						if (FlxG.keys.justPressed.ENTER){
+						if (FlxG.keys.justPressed.ENTER||virtualPad.buttonA.justPressed){
 							var checkbox:Checkbox = curWidget.data.get("checkbox");
 							checkbox.toggled = !checkbox.toggled;
 							changeToggle(optionName, checkbox.toggled);
@@ -1469,14 +1471,14 @@ class OptionsSubstate extends MusicBeatSubstate
 							doUpdate = true;
 						}
 
-						if (FlxG.keys.justPressed.R){
+						if (FlxG.keys.justPressed.R||virtualPad.buttonX.justPressed){
 							@:privateAccess
 							changeToggle(optionName, ClientPrefs.defaultOptionDefinitions.get(optionName).value);
 							doUpdate = true;
 						}
 						
 					case Button:
-						if (FlxG.keys.justPressed.ENTER){
+						if (FlxG.keys.justPressed.ENTER||virtualPad.buttonA.justPressed){
 							onButtonPressed(optionName);
 							doUpdate = true;
 						}
@@ -1485,23 +1487,23 @@ class OptionsSubstate extends MusicBeatSubstate
 						// ;_;	
 						var data = curWidget.data;
 
-						if (FlxG.keys.justPressed.LEFT)	{
-							if (FlxG.keys.pressed.SHIFT)	changeNumber(optionName, data.get("min"), true);
+						if (FlxG.keys.justPressed.LEFT||virtualPad.buttonLeft.justPressed)	{
+							if (FlxG.keys.pressed.SHIFT||virtualPad.buttonY.pressed)	changeNumber(optionName, data.get("min"), true);
 							else							data.get("leftAdjust").press();
 						}
 						else if (FlxG.keys.justReleased.LEFT) {
 							data.get("leftAdjust").release();
 						}		
 
-						if (FlxG.keys.justPressed.RIGHT) {
-							if (FlxG.keys.pressed.SHIFT)	changeNumber(optionName, data.get("max"), true);
+						if (FlxG.keys.justPressed.RIGHT||virtualPad.buttonRight.justPressed) {
+							if (FlxG.keys.pressed.SHIFT||virtualPad.buttonY.pressed)	changeNumber(optionName, data.get("max"), true);
 							else							data.get("rightAdjust").press();
 						}
 						else if (FlxG.keys.justReleased.RIGHT) {
 							data.get("rightAdjust").release();
 						}
 
-						if (FlxG.keys.justPressed.R){
+						if (FlxG.keys.justPressed.R||virtualPad.buttonX.justPressed){
 							@:privateAccess
 							var defaultDefinition = ClientPrefs.defaultOptionDefinitions.get(optionName);
 							var defaultValue = defaultDefinition.value;
@@ -1518,8 +1520,8 @@ class OptionsSubstate extends MusicBeatSubstate
 
 					case Dropdown:
 						var change = 0;
-						if (FlxG.keys.justPressed.LEFT) change--;
-						if (FlxG.keys.justPressed.RIGHT) change++;
+						if (FlxG.keys.justPressed.LEFT||virtualPad.buttonLeft.justPressed) change--;
+						if (FlxG.keys.justPressed.RIGHT||virtualPad.buttonRight.justPressed) change++;
 
 						if (change != 0){
 							var sowy = actualOptions.get(optionName);
@@ -1531,7 +1533,7 @@ class OptionsSubstate extends MusicBeatSubstate
 							doUpdate = true;
 						}
 
-						if (FlxG.keys.justPressed.R){
+						if (FlxG.keys.justPressed.R||virtualPad.buttonX.justPressed){
 							@:privateAccess
 							changeDropdown(optionName, ClientPrefs.defaultOptionDefinitions.get(optionName).value);
 							doUpdate = true;
@@ -1626,7 +1628,10 @@ class OptionsSubstate extends MusicBeatSubstate
 
 			cameraPositions[selected].copyFrom(camFollow);
 		}
-
+		if (virtualPad.buttonZ.justPressed) {
+			persistentUpdate = false;
+			openSubState(new mobile.MobileControlsSelectSubState());
+		}
 		super.update(elapsed);
 
 		if (subState == null)

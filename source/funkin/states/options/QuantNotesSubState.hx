@@ -121,6 +121,7 @@ class QuantNotesSubState extends MusicBeatSubstate
 
 		changeSelection();
 		cameras = [daCam];
+		addVirtualPad(LEFT_FULL,A_B_C);
 	}
 
 	var changingNote:Bool = false;
@@ -133,7 +134,7 @@ class QuantNotesSubState extends MusicBeatSubstate
 				} else if(controls.UI_RIGHT_P) {
 					updateValue(1);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
-				} else if(controls.RESET) {
+				} else if(controls.RESET||virtualPad.buttonC.justPressed) {
 					resetValue(curSelected, typeSelected);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}

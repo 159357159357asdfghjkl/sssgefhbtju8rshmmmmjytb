@@ -541,6 +541,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
 
+		addMobileControls();
 		camFollow = prevCamFollow != null ? prevCamFollow : new FlxPoint();
 		camFollowPos = prevCamFollowPos != null ? prevCamFollowPos : new FlxObject(0, 0, 1, 1);
 
@@ -2772,7 +2773,7 @@ class PlayState extends MusicBeatState
 				doGameOver();
 			}else if (doDeathCheck()){
 				// die lol
-			}else if (controls.PAUSE)
+			}else if (controls.PAUSE#if android || FlxG.android.justReleased.BACK #end)
 				pause();
 		}
 
@@ -3382,7 +3383,7 @@ class PlayState extends MusicBeatState
 			if(doDeathCheck())
 				return;
 		}
-
+		mobileControls.visible = #if !android virtualPad.visible = #end false;
 		hud.songEnding();
 		hud.updateTime = false;
 		canPause = false;

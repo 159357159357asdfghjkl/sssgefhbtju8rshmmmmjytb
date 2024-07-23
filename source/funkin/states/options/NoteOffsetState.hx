@@ -234,7 +234,7 @@ class NoteOffsetState extends MusicBeatState
 				updateNoteDelay();
 			}
 
-			if(controls.RESET)
+			if(virtualPad.buttonC.justPressed || controls.RESET)
 			{
 				holdTime = 0;
 				barPercent = 0;
@@ -338,6 +338,8 @@ class NoteOffsetState extends MusicBeatState
 		timeTxt.visible = !onComboMenu;
 		beatText.visible = !onComboMenu;
 
+		addVirtualPad(onComboMenu ? NONE : LEFT_RIGHT, A_B_C);
+		addVirtualPadCamera();
 		if (onComboMenu){
 			changeModeText.text = '< Combo Offset (Press Accept to Switch) >';
 			openSubState(comboSubstate);

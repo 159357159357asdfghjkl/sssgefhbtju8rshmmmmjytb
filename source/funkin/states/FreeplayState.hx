@@ -105,7 +105,7 @@ class FreeplayState extends MusicBeatState
 
 		////
 		menu.curSelected = lastSelected;
-
+        addVirtualPad(LEFT_FULL, A_B_X_Y);
 		super.create();
 	}
 
@@ -123,11 +123,11 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new funkin.states.MainMenuState());	
 			
-		}else if (controls.RESET){
+		}else if (controls.RESET||virtualPad.buttonZ.justPressed){
 			openSubState(new funkin.states.ResetScoreSubState(selectedSongData.songName, false));
 			this.subStateClosed.addOnce((_) -> refreshScore());
 			
-		}else if (FlxG.keys.justPressed.CONTROL){
+		}else if (FlxG.keys.justPressed.CONTROL || virtualPad.buttonY.justPressed){
 			openSubState(new funkin.states.GameplayChangersSubstate());
 
 		}

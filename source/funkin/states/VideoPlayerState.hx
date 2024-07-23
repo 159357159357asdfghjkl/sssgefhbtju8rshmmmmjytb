@@ -62,6 +62,7 @@ class VideoPlayerState extends MusicBeatState
             #end
 		}
 		#end
+		addVirtualPad(NONE,A);
 	}
 
 	#if VIDEOS_ALLOWED

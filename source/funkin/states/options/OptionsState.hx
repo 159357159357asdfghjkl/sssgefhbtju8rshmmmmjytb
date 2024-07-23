@@ -85,6 +85,7 @@ class OptionsState extends MusicBeatState
 		add(backdrop);
 		add(bg);
 		#end
+
     }
 
 	override public function resetSubState(){

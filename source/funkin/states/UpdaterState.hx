@@ -61,6 +61,7 @@ class UpdaterState extends MusicBeatState {
     public function new(r:Release){
         super();
         release=r;
+		
     }
 
     var updateText:FlxText;
@@ -83,6 +84,7 @@ class UpdaterState extends MusicBeatState {
 		fileBar.createFilledBar(FlxColor.GRAY, FlxColor.GREEN);
         fileBar.visible = false;
 		add(fileBar);
+		addVirtualPad(NONE,A_B_E)
         super.create();
     }
 
@@ -299,9 +301,9 @@ class UpdaterState extends MusicBeatState {
         super.update(elapsed);
         
 		if (downloading)return;
-        if(FlxG.keys.justPressed.N){
+        if(FlxG.keys.justPressed.N||virtualPad.buttonB.justPressed){
 			MusicBeatState.switchState(new TitleState());
-        }else if(FlxG.keys.justPressed.I){
+        }else if(FlxG.keys.justPressed.I||||virtualPad.buttonE.justPressed){
 			Main.outOfDate = false;
 			MusicBeatState.switchState(new TitleState());
 			if (FlxG.save.data.ignoredUpdates == null)
@@ -309,7 +311,7 @@ class UpdaterState extends MusicBeatState {
 			
 			FlxG.save.data.ignoredUpdates.push(release.tag_name);
             FlxG.save.flush();
-        }else if(FlxG.keys.justPressed.Y){
+        }else if(FlxG.keys.justPressed.Y||virtualPad.buttonA.justPressed){
             startDownload();
         }
     }

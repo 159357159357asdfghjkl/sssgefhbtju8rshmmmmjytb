@@ -73,7 +73,8 @@ class ResetScoreSubState extends MusicBeatSubstate
 		noText.x += 200;
 		add(noText);
 
-		updateOptions();
+		updateOptions();		addVirtualPad(LEFT_RIGHT, A_B);
+		addVirtualPadCamera();
 	}
 
 	override function update(elapsed:Float)

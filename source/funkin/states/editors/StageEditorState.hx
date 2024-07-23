@@ -270,7 +270,7 @@ class StageEditorState extends MusicBeatState{
 		focusedChar = "boyfriend";
 		changeCharacterX();
 		changeCharacterY();
-		
+		addVirtualPad(LEFT_FULL,A_B_C_X_Y_Z);
 		super.create();
 	}
 
@@ -302,22 +302,22 @@ class StageEditorState extends MusicBeatState{
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.keys.justPressed.ONE){
+		if (FlxG.keys.justPressed.ONE||virtualPad.buttonA.justPressed){
 			focusedChar = "dad";
-		}else if (FlxG.keys.justPressed.TWO){
+		}else if (FlxG.keys.justPressed.TWO||virtualPad.buttonB.justPressed){
 			focusedChar = "gf";
-		}else if (FlxG.keys.justPressed.THREE){
+		}else if (FlxG.keys.justPressed.THREE||virtualPad.buttonX.justPressed){
 			focusedChar = "boyfriend";
 		}
 
-		var move = FlxG.keys.pressed.SHIFT ? 100 : 10;
-		if (FlxG.keys.justPressed.RIGHT)
+		var move = (virtualPad.buttonY.pressed||FlxG.keys.pressed.SHIFT) ? 100 : 10;
+		if (FlxG.keys.justPressed.RIGHT||virtualPad.buttonRight.justPressed)
 			changeCharacterX(move);
-		if (FlxG.keys.justPressed.LEFT)
+		if (FlxG.keys.justPressed.LEFT||virtualPad.buttonLeft.justPressed)
 			changeCharacterX(-move);
-		if (FlxG.keys.justPressed.DOWN)
+		if (FlxG.keys.justPressed.DOWN||virtualPad.buttonDown.justPressed)
 			changeCharacterY(move);
-		if (FlxG.keys.justPressed.UP)
+		if (FlxG.keys.justPressed.UP||virtualPad.buttonUp.justPressed)
 			changeCharacterY(-move);
 
 		if (controls.BACK)

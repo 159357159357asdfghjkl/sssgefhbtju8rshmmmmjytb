@@ -188,6 +188,8 @@ class GameOverSubstate extends MusicBeatSubstate
 			defaultCamZoom = game.stage.stageData.defaultZoom;
 		else
 			defaultCamZoom = FlxG.camera.zoom;
+				addVirtualPad(NONE, A_B);
+		addVirtualPadCamera();
 	}
 
 	var isFollowingAlready:Bool = false;

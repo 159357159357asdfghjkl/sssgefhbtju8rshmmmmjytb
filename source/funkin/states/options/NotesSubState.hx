@@ -80,6 +80,7 @@ class NotesSubState extends MusicBeatSubstate
 
 		changeSelection();
 		cameras = [daCam];
+		addVirtualPad(LEFT_FULL, A_B);
 	}
 
 	var changingNote:Bool = false;
