@@ -75,7 +75,7 @@ class MasterEditorMenu extends MusicBeatState
 		#end
 		changeSelection();
 
-		FlxG.mouse.visible = false;		addVirtualPad(#if MODS_ALLOWED LEFT_FULL #else UP_DOWN #end, A_B);
+		FlxG.mouse.visible = false;		addVirtualPad(#if MODS_ALLOWED LEFT_FULL #else UP_DOWN #end, A_B_C);
 		super.create();
 	}
 
@@ -109,7 +109,7 @@ class MasterEditorMenu extends MusicBeatState
 		{
 			switch(options[curSelected]) {
 				case 'Character Editor':
-					MusicBeatState.switchState(FlxG.keys.pressed.SHIFT ? new SowyCharacterEditor() : new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
+					MusicBeatState.switchState((FlxG.keys.pressed.SHIFT||virtualPad.buttonC.pressed) ? new SowyCharacterEditor() : new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
 				/*case 'Week Editor':
 					MusicBeatState.switchState(new WeekEditorState());*/
 				case 'Stage Editor':
