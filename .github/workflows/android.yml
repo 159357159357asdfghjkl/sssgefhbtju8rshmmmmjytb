@@ -1,5 +1,6 @@
 name: Mobile + Release
-on: workflow_dispatch
+on: 
+workflow_dispatch:
 jobs:
   Android:
     runs-on: ubuntu-latest
@@ -22,7 +23,7 @@ jobs:
         run: |
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
-
+        shell: cmd
       - name: Configure Android
         run: |
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
