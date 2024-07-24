@@ -21,18 +21,18 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib setup ~/haxelib
-          haxelib install openfl 9.2.2
-          haxelib install lime 8.0.2
-          haxelib install flixel 5.5.0
-          haxelib install flixel-ui 2.6.1
-          haxelib install flixel-addons 3.2.3
-          haxelib install hscript
-          haxelib install hxcpp > /dev/null
-          haxelib install hxcpp debug server
-          haxelib install hxvlc 1.6.1
+          haxelib --never install openfl 9.2.2
+          haxelib --never install lime 8.0.2
+          haxelib --never install flixel 5.5.0
+          haxelib --never install flixel-ui 2.6.1
+          haxelib --never install flixel-addons 3.2.3
+          haxelib --never install hscript
+          haxelib --never install hxcpp > /dev/null
+          haxelib --never install hxcpp debug server
+          haxelib --never install hxvlc 1.6.1
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit
-          haxelib install extension-androidtools 2.1.0
+          haxelib --never install extension-androidtools 2.1.0
           haxelib list
 
       - name: Configure Android
