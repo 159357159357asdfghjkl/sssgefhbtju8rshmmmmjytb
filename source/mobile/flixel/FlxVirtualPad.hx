@@ -9,7 +9,8 @@ import flixel.util.FlxDestroyUtil;
 import mobile.flixel.FlxButton;
 import openfl.display.BitmapData;
 import openfl.utils.Assets;
-
+import funkin.Paths;
+import funkin.ClientPrefs;
 enum FlxDPadMode
 {
 	UP_DOWN;
@@ -232,7 +233,7 @@ class FlxVirtualPad extends FlxTypedSpriteGroup<FlxButton>
 	{
 		var graphic:FlxGraphic;
 
-		final path:String = 'images:assets/images/virtualpad/$Graphic.png';
+		final path:String = 'shared:assets/shared/images/virtualpad/$Graphic.png';
 		#if MODS_ALLOWED
 		final modsPath:String = Paths.modsImages('virtualpad/$Graphic');
 		if(sys.FileSystem.exists(modsPath))
@@ -240,7 +241,7 @@ class FlxVirtualPad extends FlxTypedSpriteGroup<FlxButton>
 		else #end if(Assets.exists(path))
 			graphic = FlxGraphic.fromBitmapData(Assets.getBitmapData(path));
 		else
-			graphic = FlxGraphic.fromBitmapData(Assets.getBitmapData('images:assets/images/virtualpad/default.png'));
+			graphic = FlxGraphic.fromBitmapData(Assets.getBitmapData('shared:assets/shared/images/virtualpad/default.png'));
 
 		var button:FlxButton = new FlxButton(X, Y);
 		button.frames = FlxTileFrames.fromGraphic(graphic, FlxPoint.get(Std.int(graphic.width / 2), graphic.height));

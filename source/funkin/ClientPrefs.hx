@@ -626,8 +626,43 @@ class ClientPrefs
 				type: Toggle,
 				value: true,
 				data: []
+			},
+			"mobileCAlpha" => {
+				display: "Virtual Pad Alpha",
+				desc: "Set the Virtual Pad's Alpha.",
+				type: Number,
+				value: 0.6,
+				data: [
+				"min" => 0,
+				"max" => 1,
+				"step" => 1,
+				"type" => "percent"
+			]
+			},
+			"mobileCEx" => {
+				display: "Ex Pad",
+				desc: "Enable the Ex Pad.",
+				type: Toggle,
+				value: false,
+				data: []
+			},
+			"hitboxPos" => {
+				display: "idk",
+				desc: "idk",
+				type: Toggle,
+				value: false,
+				data: []
+			},
+			"hitboxType" => {
+				display: "Type",
+				desc: "Changes how hitbox looks.",
+				type: Dropdown,
+				value: "No Gradient",
+				data: [
+					"recommendsRestart" => true,
+					"options" => ["Hidden", "No Gradient", "No Gradient (Old)"]
+				]
 			}
-			
 		];
 	}
 

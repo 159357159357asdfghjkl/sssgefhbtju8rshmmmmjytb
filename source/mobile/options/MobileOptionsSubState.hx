@@ -7,7 +7,8 @@ import sys.io.File;
 #end
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
-
+import funkin.Paths;
+import funkin.ClientPrefs;
 class MobileOptionsSubState extends BaseOptionsMenu
 {
 	#if android

@@ -14,7 +14,8 @@ import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.util.FlxDestroyUtil;
 import flixel.system.FlxSound;
-
+import funkin.Paths;
+import funkin.ClientPrefs;
 /**
  * A simple button class that calls a function when clicked by the touch.
  */

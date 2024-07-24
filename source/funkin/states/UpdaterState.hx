@@ -84,7 +84,7 @@ class UpdaterState extends MusicBeatState {
 		fileBar.createFilledBar(FlxColor.GRAY, FlxColor.GREEN);
         fileBar.visible = false;
 		add(fileBar);
-		addVirtualPad(NONE,A_B_E)
+		addVirtualPad(NONE,A_B_E);
         super.create();
     }
 
@@ -303,7 +303,7 @@ class UpdaterState extends MusicBeatState {
 		if (downloading)return;
         if(FlxG.keys.justPressed.N||virtualPad.buttonB.justPressed){
 			MusicBeatState.switchState(new TitleState());
-        }else if(FlxG.keys.justPressed.I||||virtualPad.buttonE.justPressed){
+        }else if(FlxG.keys.justPressed.I||virtualPad.buttonE.justPressed){
 			Main.outOfDate = false;
 			MusicBeatState.switchState(new TitleState());
 			if (FlxG.save.data.ignoredUpdates == null)

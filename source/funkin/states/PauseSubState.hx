@@ -182,7 +182,8 @@ class PauseSubState extends MusicBeatSubstate
 
 		playMusic();
 		regenMenu();
-		regenInfo();
+		regenInfo();		addVirtualPad(LEFT_FULL, A);
+		addVirtualPadCamera();
 	}
 
 	public function regenMenu()
@@ -352,8 +353,7 @@ private class SkipTimeText extends AttachedFlxText{
 		scrollFactor.set();
 		borderSize = 2;
 		updateSkipTimeText();
-		addVirtualPad(LEFT_FULL, A);
-		addVirtualPadCamera();
+
 	}
 
 	function set_item(obj:Alphabet){

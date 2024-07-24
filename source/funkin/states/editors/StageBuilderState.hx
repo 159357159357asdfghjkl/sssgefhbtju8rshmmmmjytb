@@ -253,7 +253,7 @@ class LayerWindow extends FlxTypedGroup<FlxBasic>
         FlxG.stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 
         FlxG.stage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
-        addVirtualPad(LEFT_FULL,A_B_C_X_Y_Z);
+        
     }
 
     override public function destroy(){
@@ -844,7 +844,7 @@ class StageBuilderState extends MusicBeatState
         add(layerWindow);
 
         updateObjects();
-
+addVirtualPad(LEFT_FULL,A_B_C_X_Y_Z);
         super.create();
 
         persistentUpdate = false;

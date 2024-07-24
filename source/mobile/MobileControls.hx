@@ -8,7 +8,8 @@ import flixel.util.FlxSignal;
 import mobile.flixel.FlxButton;
 import mobile.flixel.FlxHitbox;
 import mobile.flixel.FlxVirtualPad;
-
+import funkin.Paths;
+import funkin.ClientPrefs;
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
  */

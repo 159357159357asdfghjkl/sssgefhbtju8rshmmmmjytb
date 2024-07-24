@@ -8,7 +8,8 @@ import mobile.flixel.FlxButton;
 import openfl.display.BitmapData;
 import openfl.display.Shape;
 import openfl.geom.Matrix;
-
+import funkin.Paths;
+import funkin.ClientPrefs;
 /**
  * A zone with 4 hint's (A hitbox).
  * It's really easy to customize the layout.
