@@ -22,7 +22,8 @@ jobs:
         run: |
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
-
+          haxelib run lime rebuild hxcpp
+          
       - name: Configure Android
         run: |
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
@@ -31,7 +32,7 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
 
       - name: Compile
-        run: haxelib run lime build android -D officialBuild -final
+        run: haxelib run lime build android -final
 
       - name: Upload Artifact
         uses: actions/upload-artifact@main
