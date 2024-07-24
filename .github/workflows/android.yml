@@ -22,7 +22,6 @@ jobs:
         run: |
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
-        shell: cmd
         
       - name: Configure Android
         run: |
