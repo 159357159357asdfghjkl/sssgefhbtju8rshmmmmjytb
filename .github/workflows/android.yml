@@ -1,5 +1,5 @@
 name: Mobile + Release
-on: workflow_dispatch:
+on: workflow_dispatch
 jobs:
   Android:
     runs-on: ubuntu-latest
@@ -17,13 +17,7 @@ jobs:
         uses: krdlab/setup-haxe@master
         with:
           haxe-version: 4.2.5
-     - name: Masturbate the Path
-        uses: actions/cache@v2
-        with:
-          path: |
-            %~/haxelib%
-          key: ${{ runner.os }}-android
-
+          
       - name: Install Libraries
         run: |
           haxelib install hmm
