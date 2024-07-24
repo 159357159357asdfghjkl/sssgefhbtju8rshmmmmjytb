@@ -21,8 +21,8 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib setup ~/haxelib
-          haxelib install hmm
-          haxelib run hmm install
+          haxelib install hmm --quiet --never
+          haxelib run hmm install --quiet --never
 
       - name: Configure Android
         run: |
