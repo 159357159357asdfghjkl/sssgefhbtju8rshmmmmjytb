@@ -153,8 +153,8 @@ class SUtil
 enum abstract StorageType(String) from String to String
 {
 	final forcedPath = '/storage/emulated/0/';
-	final packageNameLocal = 'com.shadowmario.psychengine';
-	final fileLocal = 'PsychEngine';
+	final packageNameLocal = 'com.sowy.trollengine';
+	final fileLocal = 'TrollEngine';
 
 	public static function fromStr(str:String):StorageType
 	{
