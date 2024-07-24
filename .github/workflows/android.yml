@@ -1,32 +1,35 @@
-name: Mobile + Release
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  #push:
-  #  branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+name: Build Game for Android
+on: workflow_dispatch
 jobs:
   Android:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        flag: [ONLY_ARMV7, ONLY_ARM64, UNIVERSAL]
     steps:
       - name: Checkout
         uses: actions/checkout@main
+        with:
+          submodules: true
+
       - name: Setup Java JDK
         uses: actions/setup-java@main
         with:
           distribution: 'temurin'
           java-version: '17'
+
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
           haxe-version: 4.2.5
+
       - name: Install Libraries
         run: |
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
+          haxelib run lime rebuild hxcpp
+
       - name: Configure Android
         run: |
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
@@ -35,11 +38,11 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
 
       - name: Compile
-        run: haxelib run lime build android -D officialBuild -final
+        run: haxelib run lime build android -D ${{matrix.flag}}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@main
         with:
-          name: androidBuild
-          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
+          name: androidBuild-${{matrix.flag}}
+          path: export/release/android/bin/app/build/outputs/apk/debug
           if-no-files-found: error
