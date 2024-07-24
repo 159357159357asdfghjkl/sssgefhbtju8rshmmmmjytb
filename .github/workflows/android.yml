@@ -6,24 +6,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-
       - name: Setup Java JDK
         uses: actions/setup-java@main
         with:
           distribution: 'temurin'
           java-version: '17'
-
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
           haxe-version: 4.2.5
-          
       - name: Install Libraries
         run: |
-          haxelib setup ~/haxelib
-          haxelib install hmm --quiet --never
-          haxelib run hmm install --quiet --never
-
+          haxelib install hmm --quiet
+          haxelib run hmm install --quiet
       - name: Configure Android
         run: |
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
