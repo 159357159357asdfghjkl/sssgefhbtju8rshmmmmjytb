@@ -202,7 +202,12 @@ class Main extends Sprite
 			(event:UncaughtErrorEvent) -> onCrash(event.error)
 		);
 
-
+		#if mobile
+		lime.system.System.allowScreenTimeout = ClientPrefs.screensaver;
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK]; 
+		#end
+		#end
 		#if cpp
 		// Thank you EliteMasterEric, very cool!
 		untyped __global__.__hxcpp_set_critical_error_handler(onCrash);
