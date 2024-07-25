@@ -4,14 +4,11 @@ jobs:
   Android:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@main
+      - uses: actions/checkout@v2.3.0
 
-      - name: Setup Android NDK
-        uses: nttld/setup-ndk@main
-        id: setup-ndk
+      - uses: krdlab/setup-haxe@master
         with:
-          ndk-version: r21c
+          haxe-version: 4.2.5
 
       - name: Setup Java JDK
         uses: actions/setup-java@main
@@ -27,9 +24,9 @@ jobs:
       - name: Install Libraries
         run: |
           haxelib setup ~/haxelib
-          haxelib install hxcpp 4.2.1 > /dev/null
-          haxelib install hmm --quiet
-          haxelib run hmm install --quiet
+          haxelib install hxcpp > nul
+          haxelib install hmm
+          haxelib run hmm install
 
       - name: Configure Android
         run: |
