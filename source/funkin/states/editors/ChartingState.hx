@@ -1385,8 +1385,6 @@ class ChartingState extends MusicBeatState
 		if (waveformTrack != null){
 			trackVolumeSlider.value = waveformTrack.volume;
 			trackVolumeSlider.visible = true;
-		/*}else{
-			trackVolumeSlider.visible = false;*/
 		}
 		
 		updateWaveform();
