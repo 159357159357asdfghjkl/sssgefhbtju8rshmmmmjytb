@@ -647,14 +647,14 @@ class ClientPrefs
 				data: []
 			},
 			"hitboxPos" => {
-				display: "idk",
+				display: "Hitbox Pos",
 				desc: "idk",
 				type: Toggle,
 				value: false,
 				data: []
 			},
 			"hitboxType" => {
-				display: "Type",
+				display: "Hitbox Type",
 				desc: "Changes how hitbox looks.",
 				type: Dropdown,
 				value: "No Gradient",

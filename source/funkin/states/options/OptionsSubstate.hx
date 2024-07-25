@@ -134,7 +134,11 @@ class OptionsSubstate extends MusicBeatSubstate
 				[
 					"etternaHUD", 
 					"gradeSet",
-					"showWifeScore"
+					"showWifeScore",
+					"mobileCAlpha",
+					"mobileCEx",
+					"hitboxPos",
+					"hitboxType"
 				]
 			]
 		],

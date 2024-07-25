@@ -2,12 +2,16 @@ name: Build Game for Android
 on: workflow_dispatch
 jobs:
   Android:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@main
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@main
+        id: setup-ndk
         with:
-          submodules: true
+          ndk-version: r21c
 
       - name: Setup Java JDK
         uses: actions/setup-java@main
@@ -22,6 +26,8 @@ jobs:
 
       - name: Install Libraries
         run: |
+          haxelib setup ~/haxelib
+          haxelib install hxcpp 4.2.1 > /dev/null
           haxelib install hmm --quiet
           haxelib run hmm install --quiet
 
@@ -33,7 +39,7 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
 
       - name: Compile
-        run: haxelib run lime build android -final
+        run: haxelib run lime build android -D
 
       - name: Upload Artifact
         uses: actions/upload-artifact@main
