@@ -17,7 +17,8 @@ jobs:
 
       - name: AZ
         run: |
-          haxelib install hmm 3.1.0 --quiet
+          haxelib
+          haxelib install hmm --quiet
           haxelib run hmm install
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
