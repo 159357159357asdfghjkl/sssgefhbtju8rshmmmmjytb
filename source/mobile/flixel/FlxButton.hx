@@ -13,7 +13,7 @@ import flixel.input.touch.FlxTouch;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.util.FlxDestroyUtil;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import funkin.Paths;
 import funkin.ClientPrefs;
 /**
