@@ -8,8 +8,8 @@
 		{
 			"name": "lime",
 			"type": "git",
-			"dir": null,
-			"url": "https://github.com/mcagabe19-stuff/lime"
+			"ref": "main",
+			"url": "https://github.com/MobilePorting/lime-0.6.3.git"
 		},
 		{
 			"name": "flixel",
