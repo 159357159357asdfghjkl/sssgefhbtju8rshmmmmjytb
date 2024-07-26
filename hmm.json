@@ -59,8 +59,8 @@
 			"name": "linc_luajit",
 			"type": "git",
 			"dir": null,
-			"ref": "master",
-			"url": "https://github.com/nebulazorua/linc_luajit"
+			"ref": "923a8262a7a8dcd166264dcf22cb7395a11fba65",
+			"url": "https://github.com/mcagabe19-stuff/linc_luajit-legacy"
 		},
 		{
 			"name": "extension-androidtools",
