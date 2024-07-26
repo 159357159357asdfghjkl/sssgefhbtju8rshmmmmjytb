@@ -57,8 +57,8 @@
 		{
 			"name": "linc_luajit",
 			"type": "git",
-			"url": "https://github.com/nebulazorua/linc_luajit"
-		},
+			"url": "https://github.com/MobilePorting/linc_luajit-0.6.3.git"
+		  },
 		{
 			"name": "extension-androidtools",
 			"type": "haxelib",
