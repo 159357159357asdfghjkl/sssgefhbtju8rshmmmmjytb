@@ -9,7 +9,7 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.3.4
+          haxe-version: 4.2.5
       - name: Install Libraries
         run: |
           haxelib install hmm --quiet
@@ -21,7 +21,7 @@ jobs:
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
       - name: Compile
-        run: haxelib run lime build android
+        run: haxelib run lime build android -final
       - name: Upload Artifact
         uses: actions/upload-artifact@main
         with:
