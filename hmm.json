@@ -60,12 +60,12 @@
 			"type": "git",
 			"ref": "main",
 			"url": "https://github.com/MobilePorting/linc_luajit-0.6.3.git"
-		  },
-		  {
+		},
+		{
 			"name": "extension-androidtools",
 			"type": "git",
 			"ref": "main",
 			"url": "https://github.com/MobilePorting/extension-androidtools-0.6.3"
-		  },
+		}
 	]
 }
