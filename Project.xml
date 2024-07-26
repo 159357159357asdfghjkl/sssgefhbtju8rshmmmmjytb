@@ -52,8 +52,8 @@
 	<define name="USE_EPIC_JUDGEMENT" />
 	<define name="HSCRIPT_ALLOWED" />
 	<define name="SCRIPTABLE_STATES" if="HSCRIPT_ALLOWED"/>
-	<define name="VIDEOS_ALLOWED" if="cpp final || mobile" />
-	<define name="MODS_ALLOWED" if="desktop || mobile || emscripten" />
+	<define name="VIDEOS_ALLOWED" if="cpp final" />
+	<define name="MODS_ALLOWED" if="desktop || mobile" />
 	<define name="DISCORD_ALLOWED" if="desktop cpp"/>
 	<define name="MULTICORE_LOADING" if="native" />
 	<define name="CRASH_HANDLER" if="desktop || mobile" />
