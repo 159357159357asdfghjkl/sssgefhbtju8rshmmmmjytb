@@ -662,6 +662,13 @@ class ClientPrefs
 					"recommendsRestart" => true,
 					"options" => ["Hidden", "No Gradient", "No Gradient (Old)"]
 				]
+			},
+			"screensaver" => {
+				display: "Screen Saver",
+				desc: "idk",
+				type: Toggle,
+				value: false,
+				data: []
 			}
 		];
 	}
