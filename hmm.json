@@ -7,8 +7,9 @@
 		},
 		{
 			"name": "lime",
-			"type": "haxelib",
-			"version": "8.0.2"
+			"type": "git",
+			"dir": null,
+			"url": "https://github.com/mcagabe19-stuff/lime"
 		},
 		{
 			"name": "flixel",
@@ -32,8 +33,10 @@
 		},
 		{
 			"name": "hxcpp",
-			"type": "haxelib",
-			"version": null
+			"type": "git",
+			"dir": null,
+			"ref": "8dd30d69399f616f4e85295ce3f828219b78af17",
+			"url": "https://github.com/mcagabe19-stuff/hxcpp"
 		},
 		{
 			"name": "hxcpp-debug-server",
