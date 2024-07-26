@@ -3,12 +3,13 @@
 		{
 			"name": "openfl",
 			"type": "haxelib",
-			"version": "9.2.2"
+			"version": "9.1.0"
 		},
 		{
 			"name": "lime",
 			"type": "git",
 			"dir": null,
+			"ref": "main",
 			"url": "https://github.com/mcagabe19-stuff/lime"
 		},
 		{
@@ -35,7 +36,7 @@
 			"name": "hxcpp",
 			"type": "git",
 			"dir": null,
-			"ref": "8dd30d69399f616f4e85295ce3f828219b78af17",
+			"ref": "master",
 			"url": "https://github.com/mcagabe19-stuff/hxcpp"
 		},
 		{
