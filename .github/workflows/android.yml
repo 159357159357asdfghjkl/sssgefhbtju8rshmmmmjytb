@@ -6,6 +6,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
+      - name: Setup Java JDK
+        uses: actions/setup-java@main
+        with:
+          distribution: 'temurin'
+          java-version: '17'
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
