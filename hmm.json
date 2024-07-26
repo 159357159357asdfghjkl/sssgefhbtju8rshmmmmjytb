@@ -8,7 +8,6 @@
 		{
 			"name": "lime",
 			"type": "git",
-			"ref": "main",
 			"url": "https://github.com/mcagabe19-stuff/lime.git"
 		},
 		{
