@@ -3,12 +3,12 @@
 		{
 			"name": "openfl",
 			"type": "haxelib",
-			"version": "9.1.0"
+			"version": "9.2.1"
 		},
 		{
 			"name": "lime",
-			"type": "git",
-			"url": "https://github.com/mcagabe19-stuff/lime.git"
+			"type": "haxelib",
+			"version": "8.0.1"
 		},
 		{
 			"name": "flixel",
@@ -58,12 +58,12 @@
 			"name": "linc_luajit",
 			"type": "git",
 			"ref": "main",
-			"url": "https://github.com/MobilePorting/linc_luajit-0.6.3.git"
+			"url": "https://github.com/nebulazorua/linc_luajit"
 		},
 		{
 			"name": "extension-androidtools",
-			"type": "haxelib",
-			"version": null
+			"type": "git",
+			"url": "https://github.com/Default-name123/oldtool"
 		}
 	]
 }
