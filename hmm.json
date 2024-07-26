@@ -9,7 +9,7 @@
 			"name": "lime",
 			"type": "git",
 			"ref": "main",
-			"url": "https://github.com/MobilePorting/lime-0.6.3.git"
+			"url": "https://github.com/mcagabe19-stuff/lime.git"
 		},
 		{
 			"name": "flixel",
@@ -63,9 +63,8 @@
 		},
 		{
 			"name": "extension-androidtools",
-			"type": "git",
-			"ref": "main",
-			"url": "https://github.com/MobilePorting/extension-androidtools-0.6.3"
+			"type": "haxelib",
+			"version": "2.1.0"
 		}
 	]
 }
