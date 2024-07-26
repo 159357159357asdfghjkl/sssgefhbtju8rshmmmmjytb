@@ -1,15 +1,12 @@
-name: Mobile
+name: Release
 on: workflow_dispatch
 jobs:
   Android:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Checkout
         uses: actions/checkout@main
-      - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
-        with:
-          haxe-version: 4.3.4
       - name: Setup Android NDK
         uses: nttld/setup-ndk@main
         id: setup-ndk
@@ -25,21 +22,34 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@main
 
-      - name: Install Libraries
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@v1.2.0
+        with:
+          haxe-version: 4.2.5
+      - name: Install Haxelib
         run: |
-          haxelib install hmm --quiet
-          haxelib run hmm install --quiet
-      - name: Configure Android
+          haxelib setup ~/haxelib
+          haxelib install hmm
+          haxelib run hmm install
+      - name: Create Version Tag
+        run: echo "${{github.run_id}}" > VERSION
+
+      - name: Setup Lime
         run: |
+          haxelib run lime setup -alias -y
           haxelib run lime config ANDROID_SDK $ANDROID_HOME
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
-      - name: Compile
-        run: haxelib run lime build android -final -release
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+
+      - name: Building
+        run: haxelib run lime build android -release -UNIVERSAL -final
+
       - name: Upload Artifact
         uses: actions/upload-artifact@main
         with:
           name: androidBuild
-          path: export/release/android/bin/app/build/outputs/apk/release
-          if-no-files-found: error
+          path: export/release/android/bin/app/build/outputs/apk/debug
+          if-no-files-found: warn
