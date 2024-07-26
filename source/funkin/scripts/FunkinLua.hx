@@ -1878,7 +1878,14 @@ class FunkinLua extends FunkinScript
 		addCallback("stringEndsWith", function(str:String, end:String) {
 			return str.endsWith(end);
 		});
-		
+		addCallback("vibrate", (duration:Null<Int>, ?period:Null<Int>) ->
+		{
+			if (duration == null)
+				return luaTrace('vibrate: No duration specified.');
+			else if (period == null)
+				period = 0;
+			return lime.ui.Haptic.vibrate(period, duration);
+		});
 		trace('lua file loaded: $script');
 
 		if(!ignoreCreateCall) call('onCreate', []);
