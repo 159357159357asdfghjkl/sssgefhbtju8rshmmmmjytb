@@ -2979,7 +2979,7 @@ class ChartingState extends MusicBeatState
 
 		_song.notes.push(sec);
 	}
-	
+
 	private function insertSection(idx:Int, sectionBeats:Float = 4):Void
 	{
 		var sec:SwagSection = {
@@ -3283,9 +3283,9 @@ class ChartingState extends MusicBeatState
 		var json = {
 			"song": eventsSong
 		}
-
+	
 		var data:String = Json.stringify(json, "\t");
-
+	
 		if ((data != null) && (data.length > 0))
 		{
 			_file = new FileReference();
