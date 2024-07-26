@@ -61,8 +61,8 @@
 		},
 		{
 			"name": "extension-androidtools",
-			"type": "git",
-			"url": "https://github.com/Default-name123/oldtool"
+			"type": "haxelib",
+			"version": null
 		}
 	]
 }
