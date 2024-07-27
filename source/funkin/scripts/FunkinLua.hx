@@ -6,7 +6,7 @@ import llua.Lua;
 import llua.LuaL;
 import llua.State;
 #end
-
+import mobile.SUtil;
 import funkin.states.*;
 import funkin.states.PlayState;
 import funkin.objects.*;
@@ -141,7 +141,11 @@ class FunkinLua extends FunkinScript
 				FlxG.fullscreen = false;
 				lime.app.Application.current.window.alert(resultStr, 'Error on lua script!');
 				#else
+				#if (mobile && !ios)
+				SUtil.showPopUp(resultStr, 'Error on lua script!');
+				#else
 				luaTrace('Error loading lua script: "$script"\n' + resultStr, true, false);
+				#end
 				#end
 				lua = null;
 				return;

@@ -276,7 +276,7 @@ class FunkinHScript extends FunkinScript
 		set("Wife3", funkin.data.JudgmentManager.Wife3);
 		set("JudgmentManager", funkin.data.JudgmentManager);
 		set("Judgement", Wrappers.Judgment);
-
+		set("SUtil",mobile.SUtil);
 		set("ModManager", funkin.modchart.ModManager);
 		set("Modifier", funkin.modchart.Modifier);
 		set("SubModifier", funkin.modchart.SubModifier);

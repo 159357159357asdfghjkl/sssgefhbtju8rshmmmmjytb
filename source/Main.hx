@@ -14,7 +14,7 @@ import funkin.*;
 import funkin.objects.Bread;
 import funkin.api.Github;
 import funkin.data.SemanticVersion;
-
+import mobile.SUtil;
 using StringTools;
 
 #if discord_rpc
@@ -82,7 +82,14 @@ class Main extends Sprite
 	}
 
 	public function new()
-	{
+	{		#if mobile
+		#if android
+		SUtil.doPermissionsShit();
+		#end
+		Sys.setCwd(SUtil.getStorageDirectory());
+		#end
+
+		mobile.Crash.init();
 		super();
 
 		if (stage != null)
