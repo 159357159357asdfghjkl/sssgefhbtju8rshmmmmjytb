@@ -628,8 +628,8 @@ class ClientPrefs
 				data: []
 			},
 			"mobileCAlpha" => {
-				display: "Virtual Pad Alpha",
-				desc: "Set the Virtual Pad's Alpha.",
+				display: "Mobile Controls Opacity",
+				desc: "idk",
 				type: Number,
 				value: 0.6,
 				data: [
@@ -640,21 +640,21 @@ class ClientPrefs
 			]
 			},
 			"mobileCEx" => {
-				display: "Ex Pad",
-				desc: "Enable the Ex Pad.",
+				display: "Extra Controls",
+				desc: "idk",
 				type: Toggle,
 				value: false,
 				data: []
 			},
 			"hitboxPos" => {
-				display: "Hitbox Pos",
+				display: "Hitbox Position",
 				desc: "idk",
 				type: Toggle,
 				value: false,
 				data: []
 			},
 			"hitboxType" => {
-				display: "Hitbox Type",
+				display: "Hitbox Design",
 				desc: "Changes how hitbox looks.",
 				type: Dropdown,
 				value: "No Gradient",
@@ -664,12 +664,22 @@ class ClientPrefs
 				]
 			},
 			"screensaver" => {
-				display: "Screen Saver",
+				display: "Allow Phone Screensaver",
 				desc: "idk",
 				type: Toggle,
 				value: false,
 				data: []
-			}
+			},
+			"storageType" => {
+				display: "Storage Type",
+				desc: "idk",
+				type: Dropdown,
+				value: "EXTERNAL_DATA",
+				data: [
+					"recommendsRestart" => true,
+					"options" => ["EXTERNAL_DATA", "EXTERNAL_OBB", "EXTERNAL_MEDIA","EXTERNAL",""]
+				]
+			},
 		];
 	}
 
