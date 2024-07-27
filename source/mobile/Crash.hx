@@ -9,7 +9,7 @@ import sys.io.File;
 #end
 
 using StringTools;
-using CoolUtil;
+using funkin.CoolUtil;
 
 /**
  * Crash Handler.
