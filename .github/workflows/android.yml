@@ -1,13 +1,6 @@
 name: Release
 on: workflow_dispatch
 jobs:
-  cleaner:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Runner workspace path
-        run: |
-          echo "Cleaning up previous run"
-          rm -rf "${{ github.workspace }}"
   buildAndroid:
     name: buildAndroid
     runs-on: ubuntu-latest

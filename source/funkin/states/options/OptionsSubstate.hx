@@ -139,7 +139,8 @@ class OptionsSubstate extends MusicBeatSubstate
 					"mobileCEx",
 					"hitboxPos",
 					"hitboxType",
-					"screensaver"
+					"screensaver",
+					"storageType"
 				]
 			]
 		],
