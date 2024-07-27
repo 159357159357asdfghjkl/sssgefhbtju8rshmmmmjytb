@@ -53,7 +53,7 @@
 	<define name="HSCRIPT_ALLOWED" />
 	<define name="SCRIPTABLE_STATES" if="HSCRIPT_ALLOWED"/>
 	<define name="VIDEOS_ALLOWED" unless="32bits" />
-	<define name="MODS_ALLOWED" if="desktop || android" />
+	<define name="MODS_ALLOWED" />
 	<define name="DISCORD_ALLOWED" if="desktop cpp"/>
 	<define name="MULTICORE_LOADING" if="native" />
 	<define name="CRASH_HANDLER" />

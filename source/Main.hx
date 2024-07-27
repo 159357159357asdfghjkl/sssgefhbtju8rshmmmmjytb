@@ -88,8 +88,6 @@ class Main extends Sprite
 		#end
 		Sys.setCwd(SUtil.getStorageDirectory());
 		#end
-
-		mobile.Crash.init();
 		super();
 
 		if (stage != null)
