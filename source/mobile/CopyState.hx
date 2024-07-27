@@ -14,7 +14,7 @@ import haxe.io.Path;
 import sys.io.File;
 import sys.FileSystem;
 #end
-
+import funkin.states.MusicBeatState;
 using StringTools;
 
 class CopyState extends MusicBeatState
