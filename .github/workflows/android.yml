@@ -1,6 +1,13 @@
 name: Release
 on: workflow_dispatch
 jobs:
+  cleaner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Runner workspace path
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
   buildAndroid:
     name: buildAndroid
     runs-on: ubuntu-latest
@@ -17,7 +24,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: 11
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
