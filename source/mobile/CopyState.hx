@@ -12,7 +12,7 @@ import openfl.utils.ByteArray;
 import haxe.io.Path;
 import mobile.SUtil;
 import funkin.Paths;
-
+import funkin.states.TitleState;
 
 #if sys
 import sys.io.File;
