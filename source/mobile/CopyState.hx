@@ -10,10 +10,9 @@ import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import openfl.utils.ByteArray;
 import haxe.io.Path;
-import mobile.funkin.backend.utils.SUtil;
-import funkin.backend.assets.Paths;
-import funkin.backend.utils.NativeAPI;
-import funkin.backend.system.MainState;
+import mobile.SUtil;
+import funkin.Paths;
+
 
 #if sys
 import sys.io.File;
@@ -48,11 +47,11 @@ class CopyState extends funkin.backend.MusicBeatState
 		checkExistingFiles();
 		if (maxLoopTimes <= 0)
 		{
-			FlxG.switchState(new MainState());
+			FlxG.switchState(new TitleState());
 			return;
 		}
 
-		NativeAPI.showMessageBox("Notice", "Seems like you have some missing files that are necessary to run the game\nPress OK to begin the copy process");
+			SUtil.showPopUp("Notice", "Seems like you have some missing files that are necessary to run the game\nPress OK to begin the copy process");
 		
 		shouldCopy = true;
 
@@ -91,14 +90,14 @@ class CopyState extends funkin.backend.MusicBeatState
 			{
 				if (failedFiles.length > 0)
 				{
-					NativeAPI.showMessageBox('Failed To Copy ${failedFiles.length} File.', failedFiles.join('\n'));
+					SUtil.showPopUp('Failed To Copy ${failedFiles.length} File.', failedFiles.join('\n'));
 					if (!FileSystem.exists('logs'))
 						FileSystem.createDirectory('logs');
 					File.saveContent('logs/' + Date.now().toString().replace(' ', '-').replace(':', "'") + '-CopyState' + '.txt', failedFilesStack.join('\n'));
 				}
 				canUpdate = false;
 				FlxG.sound.play(Paths.sound('menu/confirm')).onComplete = () -> {
-					FlxG.switchState(new MainState());
+					FlxG.switchState(new TitleState());
 				};
 			}
 
