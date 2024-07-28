@@ -10,16 +10,19 @@ import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import openfl.utils.ByteArray;
 import haxe.io.Path;
+import mobile.funkin.backend.utils.SUtil;
+import funkin.backend.assets.Paths;
+import funkin.backend.utils.NativeAPI;
+import funkin.backend.system.MainState;
+
 #if sys
 import sys.io.File;
 import sys.FileSystem;
 #end
-import funkin.states.*;
-import funkin.Paths;
-import mobile.SUtil;
+
 using StringTools;
 
-class CopyState extends MusicBeatState
+class CopyState extends funkin.backend.MusicBeatState
 {
 	public static var locatedFiles:Array<String> = [];
 	public static var maxLoopTimes:Int = 0;
@@ -45,16 +48,21 @@ class CopyState extends MusicBeatState
 		checkExistingFiles();
 		if (maxLoopTimes <= 0)
 		{
-			MusicBeatState.switchState(new TitleState());
+			FlxG.switchState(new MainState());
 			return;
 		}
 
-		SUtil.showPopUp("Seems like you have some missing files that are necessary to run the game\nPress OK to begin the copy process", "Notice!");
+		NativeAPI.showMessageBox("Notice", "Seems like you have some missing files that are necessary to run the game\nPress OK to begin the copy process");
 		
 		shouldCopy = true;
 
 		add(new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d));
 
+		loadingImage = new FlxSprite(0, 0, Paths.image('funkay'));
+		loadingImage.setGraphicSize(0, FlxG.height);
+		loadingImage.updateHitbox();
+		loadingImage.screenCenter();
+		add(loadingImage);
 
 		bottomBG = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		bottomBG.alpha = 0.6;
@@ -83,14 +91,14 @@ class CopyState extends MusicBeatState
 			{
 				if (failedFiles.length > 0)
 				{
-					SUtil.showPopUp(failedFiles.join('\n'), 'Failed To Copy ${failedFiles.length} File.');
+					NativeAPI.showMessageBox('Failed To Copy ${failedFiles.length} File.', failedFiles.join('\n'));
 					if (!FileSystem.exists('logs'))
 						FileSystem.createDirectory('logs');
 					File.saveContent('logs/' + Date.now().toString().replace(' ', '-').replace(':', "'") + '-CopyState' + '.txt', failedFilesStack.join('\n'));
 				}
 				canUpdate = false;
-				FlxG.sound.play(Paths.sound('confirmMenu')).onComplete = () -> {
-					MusicBeatState.switchState(new TitleState());
+				FlxG.sound.play(Paths.sound('menu/confirm')).onComplete = () -> {
+					FlxG.switchState(new MainState());
 				};
 			}
 
