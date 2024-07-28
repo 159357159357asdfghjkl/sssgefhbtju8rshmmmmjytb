@@ -21,7 +21,7 @@ import sys.FileSystem;
 
 using StringTools;
 
-class CopyState extends funkin.backend.MusicBeatState
+class CopyState extends funkin.states.MusicBeatState
 {
 	public static var locatedFiles:Array<String> = [];
 	public static var maxLoopTimes:Int = 0;
