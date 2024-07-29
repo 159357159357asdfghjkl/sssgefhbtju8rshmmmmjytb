@@ -345,8 +345,8 @@ class TitleState extends MusicBeatState
 
                 remove(darkness);
 				camHUD.flash(ClientPrefs.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1, null, true);
-				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7 );
-
+				//FlxG.sound.play(Paths.sound('confirmMenu'), 0.7 );
+				FlxG.sound.playMusic(Paths.sound('confirmMenu'), 0.7 ,false);
 				transitioning = true;
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
