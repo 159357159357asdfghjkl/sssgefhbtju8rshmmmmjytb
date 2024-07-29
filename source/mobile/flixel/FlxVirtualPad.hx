@@ -233,7 +233,7 @@ class FlxVirtualPad extends FlxTypedSpriteGroup<FlxButton>
 	{
 		var graphic:FlxGraphic;
 
-		final path:String = 'images:assets/images/virtualpad/$Graphic.png';
+		final path:String = 'assets/images/virtualpad/$Graphic.png';
 		#if MODS_ALLOWED
 		final modsPath:String = Paths.modsImages('virtualpad/$Graphic');
 		if(sys.FileSystem.exists(modsPath))
@@ -241,7 +241,7 @@ class FlxVirtualPad extends FlxTypedSpriteGroup<FlxButton>
 		else #end if(Assets.exists(path))
 			graphic = FlxGraphic.fromBitmapData(Assets.getBitmapData(path));
 		else
-			graphic = FlxGraphic.fromBitmapData(Assets.getBitmapData('images:assets/images/virtualpad/default.png'));
+			graphic = FlxGraphic.fromBitmapData(Assets.getBitmapData('assets/images/virtualpad/default.png'));
 
 		var button:FlxButton = new FlxButton(X, Y);
 		button.frames = FlxTileFrames.fromGraphic(graphic, FlxPoint.get(Std.int(graphic.width / 2), graphic.height));
