@@ -246,8 +246,7 @@ class TitleState extends MusicBeatState
 			skipIntro();
         }else{
 			initialized = true;
-			//MusicBeatState.playMenuMusic(0, true);
-			FlxG.sound.play(Paths.music('freakyMenu'), 0.7 );
+			MusicBeatState.playMenuMusic(0, true);
 		}
 	}
 
