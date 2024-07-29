@@ -671,7 +671,7 @@ class Paths
 		var sound:Null<Sound> = currentTrackedSounds.get(gottenPath);
 		if (sound == null){
 			#if !html5
-			sound = Sound.fromFile('./' + gottenPath);
+			//sound = Sound.fromFile('./' + gottenPath);
 			#else
 			sound = Assets.getSound(/*(path == 'songs' ? 'songs:' : '') +*/ gottenPath);
 			#end
