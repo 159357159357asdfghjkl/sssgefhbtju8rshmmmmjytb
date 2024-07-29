@@ -283,13 +283,12 @@ class MainMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				onSelected();
 			}
-			#if desktop
 			else if (FlxG.keys.anyJustPressed(debugKeys)||virtualPad.buttonE.justPressed)
 			{
 				selectedSomethin = true;
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
-			#end
+			
 		}
 
 		super.update(elapsed);
