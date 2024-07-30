@@ -403,7 +403,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 		{
 			currentInput = null;
 		}
-		else if (overlapsPoint(pointer.getWorldPosition(camera, _point), true, camera))
+		else if (overlapsPoint(pointer.getWorldPosition(camera, _point), false/*true*/, camera))
 		{
 			updateStatus(input);
 			return true;
