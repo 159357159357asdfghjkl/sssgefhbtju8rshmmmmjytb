@@ -4,12 +4,9 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxPoint;
 import flixel.util.FlxDestroyUtil;
-import flixel.util.FlxSignal;
-import mobile.flixel.FlxButton;
 import mobile.flixel.FlxHitbox;
 import mobile.flixel.FlxVirtualPad;
-import funkin.Paths;
-import funkin.ClientPrefs;
+
 /**
  * @author Mihai Alexandru (M.A. Jigsaw)
  */
@@ -17,7 +14,6 @@ class MobileControls extends FlxSpriteGroup
 {
 	public static var customVirtualPad(get, set):FlxVirtualPad;
 	public static var mode(get, set):String;
-	public static var enabled(get, never):Bool;
 
 	public var virtualPad:FlxVirtualPad;
 	public var hitbox:FlxHitbox;
@@ -29,13 +25,16 @@ class MobileControls extends FlxSpriteGroup
 		switch (MobileControls.mode)
 		{
 			case 'Pad-Right':
-				virtualPad = new FlxVirtualPad(RIGHT_FULL, NONE, ClientPrefs.mobileCEx);
+				virtualPad = new FlxVirtualPad(RIGHT_FULL, NONE);
 				add(virtualPad);
 			case 'Pad-Left':
-				virtualPad = new FlxVirtualPad(LEFT_FULL, NONE, ClientPrefs.mobileCEx);
+				virtualPad = new FlxVirtualPad(LEFT_FULL, NONE);
 				add(virtualPad);
 			case 'Pad-Custom':
 				virtualPad = MobileControls.customVirtualPad;
+				add(virtualPad);
+			case 'Pad-Duo':
+				virtualPad = new FlxVirtualPad(BOTH_FULL, NONE);
 				add(virtualPad);
 			case 'Hitbox':
 				hitbox = new FlxHitbox(4, Std.int(FlxG.width / 4), FlxG.height, [0xFF00FF, 0x00FFFF, 0x00FF00, 0xFF0000]);
@@ -57,18 +56,18 @@ class MobileControls extends FlxSpriteGroup
 
 	private static function get_mode():String
 	{
-		if (FlxG.save.data.mobileCMode == null)
+		if (FlxG.save.data.controlsMode == null)
 		{
-			FlxG.save.data.mobileCMode = 'Hitbox';
+			FlxG.save.data.controlsMode = 'Pad-Right';
 			FlxG.save.flush();
 		}
-	
-		return FlxG.save.data.mobileCMode;
+
+		return FlxG.save.data.controlsMode;
 	}
 
-	private static function set_mode(mode:String = 'Hitbox'):String
+	private static function set_mode(mode:String = 'Pad-Right'):String
 	{
-		FlxG.save.data.mobileCMode = mode;
+		FlxG.save.data.controlsMode = mode;
 		FlxG.save.flush();
 
 		return mode;
@@ -76,7 +75,7 @@ class MobileControls extends FlxSpriteGroup
 
 	private static function get_customVirtualPad():FlxVirtualPad
 	{
-		var virtualPad:FlxVirtualPad = new FlxVirtualPad(RIGHT_FULL, NONE, ClientPrefs.mobileCEx);
+		var virtualPad:FlxVirtualPad = new FlxVirtualPad(RIGHT_FULL, NONE);
 		if (FlxG.save.data.buttons == null)
 			return virtualPad;
 
@@ -115,7 +114,4 @@ class MobileControls extends FlxSpriteGroup
 
 		return virtualPad;
 	}
-
-	private static function get_enabled():Bool
-		return ClientPrefs.mobileCAlpha >= 0.1;
 }
