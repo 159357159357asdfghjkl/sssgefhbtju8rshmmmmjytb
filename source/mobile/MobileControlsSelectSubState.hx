@@ -17,7 +17,7 @@ import openfl.utils.Assets;
 
 class MobileControlsSelectSubState extends FlxSubState
 {
-	private final controlsItems:Array<String> = ['Pad-Right', 'Pad-Left', 'Pad-Custom', 'Pad-Duo', 'Hitbox', 'Keyboard'];
+	private final controlsItems:Array<String> = ['Pad-Right', 'Pad-Left', 'Pad-Custom', 'Hitbox', 'Keyboard'];
 
 	private var virtualPad:FlxVirtualPad;
 	private var hitbox:FlxHitbox;
@@ -25,6 +25,7 @@ class MobileControlsSelectSubState extends FlxSubState
 	private var downPosition:FlxText;
 	private var leftPosition:FlxText;
 	private var rightPosition:FlxText;
+	private var exPosition:FlxText;
 	private var grpControls:FlxText;
 	private var funitext:FlxText;
 	private var leftArrow:FlxSprite;
@@ -57,29 +58,26 @@ class MobileControlsSelectSubState extends FlxSubState
 			FlxG.resetState();
 		});
 		exitButton.setGraphicSize(Std.int(exitButton.width) * 3);
-		exitButton.label.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 21, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,
-			FlxColor.BLACK, true);
+		exitButton.label.setFormat("VCR OSD Mono", 21, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		exitButton.color = FlxColor.LIME;
 		add(exitButton);
 
 		resetButton = new FlxButton(exitButton.x, exitButton.y + 100, 'Reset', function()
 		{
-			if (controlsItems[Math.floor(curSelected)] == 'Pad-Custom' && resetButton.visible) // being sure about something
+			if (controlsItems[Math.floor(curSelected)] == 'Pad-Custom' && resetButton.visible)
 			{
-				MobileControls.customVirtualPad = new FlxVirtualPad(RIGHT_FULL, NONE);
+				MobileControls.customVirtualPad = new FlxVirtualPad(RIGHT_FULL, NONE, ClientPrefs.mobileCEx);
 				reloadMobileControls('Pad-Custom');
 			}
 		});
 		resetButton.setGraphicSize(Std.int(resetButton.width) * 3);
-		resetButton.label.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 21, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,
-			FlxColor.BLACK, true);
+		resetButton.label.setFormat("VCR OSD Mono", 21, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		resetButton.color = FlxColor.RED;
 		resetButton.visible = false;
 		add(resetButton);
 
-		funitext = new FlxText(0, 0, 0, 'No Android Controls!', 32);
-		funitext.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK,
-			true);
+		funitext = new FlxText(0, 0, 0, 'No Mobile Controls!', 32);
+		funitext.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		funitext.borderSize = 3;
 		funitext.borderQuality = 1;
 		funitext.screenCenter();
@@ -87,52 +85,53 @@ class MobileControlsSelectSubState extends FlxSubState
 		add(funitext);
 
 		grpControls = new FlxText(0, 100, 0, '', 32);
-		grpControls.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK,
-			true);
+		grpControls.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		grpControls.borderSize = 3;
 		grpControls.borderQuality = 1;
 		grpControls.screenCenter(X);
 		add(grpControls);
 
 		leftArrow = new FlxSprite(grpControls.x - 60, grpControls.y - 25);
-		leftArrow.frames = FlxAtlasFrames.fromSparrow(Assets.getBitmapData('assets/mobile/menu/arrows.png'), Assets.getText('assets/mobile/menu/arrows.xml'));
+		leftArrow.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
 		leftArrow.animation.addByPrefix('idle', 'arrow left');
 		leftArrow.animation.play('idle');
 		add(leftArrow);
 
 		rightArrow = new FlxSprite(grpControls.x + grpControls.width + 10, grpControls.y - 25);
-		rightArrow.frames = FlxAtlasFrames.fromSparrow(Assets.getBitmapData('assets/mobile/menu/arrows.png'), Assets.getText('assets/mobile/menu/arrows.xml'));
+		rightArrow.frames = Paths.getSparrowAtlas('campaign_menu_UI_assets');
 		rightArrow.animation.addByPrefix('idle', 'arrow right');
 		rightArrow.animation.play('idle');
 		add(rightArrow);
 
 		rightPosition = new FlxText(10, FlxG.height - 24, 0, '', 16);
-		rightPosition.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK,
-			true);
+		rightPosition.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		rightPosition.borderSize = 3;
 		rightPosition.borderQuality = 1;
 		add(rightPosition);
 
 		leftPosition = new FlxText(10, FlxG.height - 44, 0, '', 16);
-		leftPosition.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK,
-			true);
+		leftPosition.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		leftPosition.borderSize = 3;
 		leftPosition.borderQuality = 1;
 		add(leftPosition);
 
 		downPosition = new FlxText(10, FlxG.height - 64, 0, '', 16);
-		downPosition.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK,
-			true);
+		downPosition.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		downPosition.borderSize = 3;
 		downPosition.borderQuality = 1;
 		add(downPosition);
 
 		upPosition = new FlxText(10, FlxG.height - 84, 0, '', 16);
-		upPosition.setFormat(Assets.getFont('assets/mobile/menu/vcr.ttf').fontName, 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK,
-			true);
+		upPosition.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 		upPosition.borderSize = 3;
 		upPosition.borderQuality = 1;
 		add(upPosition);
+
+		exPosition = new FlxText(10, FlxG.height - 104, 0, '', 16);
+		exPosition.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
+		exPosition.borderSize = 3;
+		exPosition.borderQuality = 1;
+		add(exPosition);
 
 		changeSelection();
 
@@ -164,15 +163,44 @@ class MobileControlsSelectSubState extends FlxSubState
 				}
 				else
 				{
-					if (virtualPad.buttonUp.justPressed)
-						moveButton(touch, virtualPad.buttonUp);
-					else if (virtualPad.buttonDown.justPressed)
-						moveButton(touch, virtualPad.buttonDown);
-					else if (virtualPad.buttonRight.justPressed)
-						moveButton(touch, virtualPad.buttonRight);
-					else if (virtualPad.buttonLeft.justPressed)
-						moveButton(touch, virtualPad.buttonLeft);
+					virtualPad.forEachAlive((button:FlxButton) ->
+					{
+						if (button.justPressed)
+							moveButton(touch, button);
+					});
 				}
+				virtualPad.forEachAlive((button:FlxButton) ->
+				{
+					if (button != bindButton && buttonBinded)
+					{
+						bindButton.centerBounds();
+						button.bounds.immovable = true;
+						bindButton.bounds.immovable = false;
+						button.centerBounds();
+						FlxG.overlap(bindButton.bounds, button.bounds, function(a:Dynamic, b:Dynamic)
+						{
+							bindButton.centerInBounds();
+							button.centerBounds();
+							bindButton.bounds.immovable = true;
+							button.bounds.immovable = false;
+						}, function(a:Dynamic, b:Dynamic)
+						{
+							if (!bindButton.bounds.immovable)
+							{
+								if (bindButton.bounds.x > button.bounds.x)
+									bindButton.bounds.x = button.bounds.x + 100;
+								else
+									bindButton.bounds.x = button.bounds.x - 100;
+
+								if (bindButton.bounds.y > button.bounds.y)
+									bindButton.bounds.y = button.bounds.y + 55;
+								else if (bindButton.bounds.y != button.bounds.y)
+									bindButton.bounds.y = button.bounds.y - 55;
+							}
+							return true;
+						});
+					}
+				});
 			}
 		}
 
@@ -189,6 +217,9 @@ class MobileControlsSelectSubState extends FlxSubState
 
 			if (virtualPad.buttonRight != null)
 				rightPosition.text = 'Button Right X:' + virtualPad.buttonRight.x + ' Y:' + virtualPad.buttonRight.y;
+
+			if (virtualPad.buttonEx != null)
+				exPosition.text = 'Button Extra X:' + virtualPad.buttonEx.x + ' Y:' + virtualPad.buttonEx.y;
 		}
 	}
 
@@ -217,6 +248,7 @@ class MobileControlsSelectSubState extends FlxSubState
 		downPosition.visible = daChoice == 'Pad-Custom';
 		leftPosition.visible = daChoice == 'Pad-Custom';
 		rightPosition.visible = daChoice == 'Pad-Custom';
+		exPosition.visible = daChoice == 'Pad-Custom';
 	}
 
 	private function moveButton(touch:FlxTouch, button:FlxButton):Void
@@ -235,19 +267,15 @@ class MobileControlsSelectSubState extends FlxSubState
 		{
 			case 'Pad-Right':
 				removeControls();
-				virtualPad = new FlxVirtualPad(RIGHT_FULL, NONE);
+				virtualPad = new FlxVirtualPad(RIGHT_FULL, NONE, ClientPrefs.mobileCEx);
 				add(virtualPad);
 			case 'Pad-Left':
 				removeControls();
-				virtualPad = new FlxVirtualPad(LEFT_FULL, NONE);
+				virtualPad = new FlxVirtualPad(LEFT_FULL, NONE, ClientPrefs.mobileCEx);
 				add(virtualPad);
 			case 'Pad-Custom':
 				removeControls();
 				virtualPad = MobileControls.customVirtualPad;
-				add(virtualPad);
-			case 'Pad-Duo':
-				removeControls();
-				virtualPad = new FlxVirtualPad(BOTH_FULL, NONE);
 				add(virtualPad);
 			case 'Hitbox':
 				removeControls();
