@@ -75,7 +75,8 @@ class MasterEditorMenu extends MusicBeatState
 		#end
 		changeSelection();
 
-		FlxG.mouse.visible = false;		addVirtualPad(#if MODS_ALLOWED LEFT_FULL #else UP_DOWN #end, A_B_C);
+		FlxG.mouse.visible = false;
+		addVirtualPad(LEFT_FULL, A_B_C);
 		super.create();
 	}
 
