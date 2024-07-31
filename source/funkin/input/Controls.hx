@@ -10,9 +10,7 @@ import flixel.input.actions.FlxActionSet;
 import flixel.input.gamepad.FlxGamepadButton;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
-import mobile.flixel.FlxButton;
-import mobile.flixel.FlxHitbox;
-import mobile.flixel.FlxVirtualPad;
+
 #if (haxe >= "4.0.0")
 enum abstract Action(String) to String from String
 {
@@ -382,37 +380,6 @@ class Controls extends FlxActionSet
 		setKeyboardScheme(scheme, false);
 	}
 	#end
-
-	override function update()
-	{
-		super.update();
-	}
-
-	// inline
-	public function checkByName(name:Action):Bool
-	{
-		#if debug
-		if (!byName.exists(name))
-			throw 'Invalid name: $name';
-		#end
-		return byName[name].check();
-	}
-
-	public function getDialogueName(action:FlxActionDigital):String
-	{
-		var input = action.inputs[0];
-		return switch input.device
-		{
-			case KEYBOARD: return '[${(input.inputID : FlxKey)}]';
-			case GAMEPAD: return '(${(input.inputID : FlxGamepadInputID)})';
-			case device: throw 'unhandled device: $device';
-		}
-	}
-
-	public function getDialogueNameFromToken(token:String):String
-	{
-		return getDialogueName(getActionFromControl(Control.createByName(token.toUpperCase())));
-	}
 	public var trackedInputsUI:Array<FlxActionInput> = [];
 	public var trackedInputsNOTES:Array<FlxActionInput> = [];
 
@@ -553,6 +520,38 @@ class Controls extends FlxActionSet
 			}
 		}
 	}
+
+	override function update()
+	{
+		super.update();
+	}
+
+	// inline
+	public function checkByName(name:Action):Bool
+	{
+		#if debug
+		if (!byName.exists(name))
+			throw 'Invalid name: $name';
+		#end
+		return byName[name].check();
+	}
+
+	public function getDialogueName(action:FlxActionDigital):String
+	{
+		var input = action.inputs[0];
+		return switch input.device
+		{
+			case KEYBOARD: return '[${(input.inputID : FlxKey)}]';
+			case GAMEPAD: return '(${(input.inputID : FlxGamepadInputID)})';
+			case device: throw 'unhandled device: $device';
+		}
+	}
+
+	public function getDialogueNameFromToken(token:String):String
+	{
+		return getDialogueName(getActionFromControl(Control.createByName(token.toUpperCase())));
+	}
+
 	function getActionFromControl(control:Control):FlxActionDigital
 	{
 		return switch (control)
@@ -725,7 +724,7 @@ class Controls extends FlxActionSet
 	{
 		var copyKeys:Array<FlxKey> = keys.copy();
 		for (i in 0...copyKeys.length) {
-			if(i == FlxKey.NONE) copyKeys.remove(i);
+			if(i == NONE) copyKeys.remove(i);
 		}
 
 		#if (haxe >= "4.0.0")
@@ -756,7 +755,7 @@ class Controls extends FlxActionSet
 	inline static function addKeys(action:FlxActionDigital, keys:Array<FlxKey>, state:FlxInputState)
 	{
 		for (key in keys)
-			if(key != NONE)
+			if(key != FlxKey.NONE)
 				action.addKey(key, state);
 	}
 
@@ -1055,4 +1054,3 @@ class Controls extends FlxActionSet
 	{
 		return input.device == GAMEPAD && (deviceID == FlxInputDeviceID.ALL || input.deviceID == deviceID);
 	}
-}
