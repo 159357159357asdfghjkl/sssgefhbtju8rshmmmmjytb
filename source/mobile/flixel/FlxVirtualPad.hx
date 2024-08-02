@@ -245,15 +245,15 @@ class FlxVirtualPad extends FlxTypedSpriteGroup<FlxButton>
 
 		var button:FlxButton = new FlxButton(X, Y);
 		button.frames = FlxTileFrames.fromGraphic(graphic, FlxPoint.get(Std.int(graphic.width / 2), graphic.height));
-		//button.solid = false;
-		//button.immovable = true;
-		//button.moves = false;
+		button.solid = false;
+		button.immovable = true;
+		button.moves = false;
 		button.scrollFactor.set();
 		button.color = Color;
 		button.antialiasing = ClientPrefs.globalAntialiasing;
 		button.alpha = ClientPrefs.mobileCAlpha;
 		#if FLX_DEBUG
-		button.ignoreDrawDebug = true;
+		//button.ignoreDrawDebug = true;
 		#end
 		return button;
 	}
