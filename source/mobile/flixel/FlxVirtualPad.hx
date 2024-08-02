@@ -233,7 +233,7 @@ class FlxVirtualPad extends FlxTypedSpriteGroup<FlxButton>
 	{
 		var graphic:FlxGraphic;
 
-		final path:String = 'assets:assets/images/virtualpad/$Graphic.png';
+		final path:String = 'assets/images/virtualpad/$Graphic.png';
 		#if MODS_ALLOWED
 		final modsPath:String = Paths.modsImages('virtualpad/$Graphic');
 		if(sys.FileSystem.exists(modsPath))
